@@ -73,5 +73,23 @@ namespace winDapper
                 
             }
         }
+
+        private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            var id = dataGridView1.CurrentRow.Cells[1].Value;
+            var det = con.Query<OrderDetails>("Select * From [Order Details] Where OrderId=@orderId",new {OrderId=id});
+            dataGridView2.DataSource = det;
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            dataGridView1_MouseClick(null, null);
+        }
+
+        private void ınsertProductToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form InsertProduct = new Form();
+            InsertProduct.Show();
+        }
     }
 }
