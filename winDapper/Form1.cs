@@ -36,7 +36,7 @@ namespace winDapper
             comboBox1.DisplayMember = "CategoryName";
             comboBox1.ValueMember = "CategoryID";
 
-           
+            
 
 
 
@@ -44,8 +44,18 @@ namespace winDapper
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            var siparis= con.Execute("UrunSiparisleri",new { productId = listBox1.SelectedIndex},commandType: CommandType.StoredProcedure);
+            try
+            {
+                var param = new DynamicParameters();
+                var id = ((winDapper.Products)(listBox1.SelectedItem)).ProductId;
+
+                var siparis = con.Query<Procedure>("UrunSiparisleri", new { productId = id }, commandType: CommandType.StoredProcedure);
+                dataGridView1.DataSource = siparis;
+            }
+            catch
+            {
+
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
