@@ -33,6 +33,8 @@ namespace Disconnected
             comboBox1.DisplayMember = "CategoryName";
             comboBox1.ValueMember = "CategoryId";
 
+            
+
          
         }
 
